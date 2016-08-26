@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                Toast.makeText(MainActivity.this, "explain", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "The app needs permission to access you location.", Toast.LENGTH_SHORT).show();
                 // Show an expanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements
                             mGoogleApiClient, mLocationRequest, this);
                 } else {
 
-                    Toast.makeText(MainActivity.this, "Denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Permission is denied.", Toast.LENGTH_SHORT).show();
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
