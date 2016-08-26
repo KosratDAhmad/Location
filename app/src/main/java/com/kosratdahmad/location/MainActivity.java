@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity implements
     private final String TAG = MainActivity.class.getSimpleName();
     private TextView mTextLatitude;
     private TextView mTextLongitude;
+    private TextView mTextLatitudeOne;
+    private TextView mTextLongitudeOne;
+    private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
 
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements
 
         mTextLatitude = (TextView) findViewById(R.id.txt_latitude);
         mTextLongitude = (TextView) findViewById(R.id.txt_longitude);
+        mTextLatitudeOne = (TextView) findViewById(R.id.txt_latitude_one);
+        mTextLongitudeOne = (TextView) findViewById(R.id.txt_longitude_one);
     }
 
     @Override
@@ -93,6 +98,16 @@ public class MainActivity extends AppCompatActivity implements
         }else {
             LocationServices.FusedLocationApi.requestLocationUpdates(
                     mGoogleApiClient, mLocationRequest, this);
+        }
+
+        // get location one time
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if(mLastLocation != null){
+            String latitude = getString(R.string.latitude) + "    "+mLastLocation.getLatitude();
+            String longitude = getString(R.string.longitude) + "    "+mLastLocation.getLongitude();
+
+            mTextLatitudeOne.setText(latitude);
+            mTextLongitudeOne.setText(longitude);
         }
     }
 

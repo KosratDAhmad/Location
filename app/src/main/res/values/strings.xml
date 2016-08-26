@@ -3,4 +3,5 @@
     <string name="location_continuously">Get Location Continuously</string>
     <string name="longitude">Longitude: </string>
     <string name="latitude">Latitude: </string>
+    <string name="location_one_time">Get Location One Time</string>
 </resources>
