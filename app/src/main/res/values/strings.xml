@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Location</string>
+    <string name="location_continuously">Get Location Continuously</string>
+    <string name="longitude">Longitude: </string>
+    <string name="latitude">Latitude: </string>
 </resources>

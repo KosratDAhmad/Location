@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements
         LocationListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
-    private TextView mTextLocation;
+    private TextView mTextLatitude;
+    private TextView mTextLongitude;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
 
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        mTextLocation = (TextView) findViewById(R.id.txt_location);
+        mTextLatitude = (TextView) findViewById(R.id.txt_latitude);
+        mTextLongitude = (TextView) findViewById(R.id.txt_longitude);
     }
 
     @Override
@@ -128,7 +130,12 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLocationChanged(Location location) {
         Log.i(TAG, "onLocationChanged: "+location.toString());
-        mTextLocation.setText(location.toString());
+
+        String latitude = getString(R.string.latitude) + "    "+location.getLatitude();
+        String longitude = getString(R.string.longitude) + "    "+location.getLongitude();
+
+        mTextLatitude.setText(latitude);
+        mTextLongitude.setText(longitude);
     }
 
     @Override
