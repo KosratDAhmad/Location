@@ -10,7 +10,8 @@
     tools:context="com.kosratdahmad.location.MainActivity">
 
     <TextView
+        android:id="@+id/txt_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Location Goes Here!" />
 </RelativeLayout>
