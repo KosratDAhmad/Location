@@ -3,48 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     tools:context="com.kosratdahmad.location.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/location_continuously"
         android:paddingBottom="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:text="@string/location_continuously"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
         android:id="@+id/txt_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/latitude"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        tools:text="@string/latitude" />
+
     <TextView
         android:id="@+id/txt_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/longitude"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        tools:text="@string/longitude" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/location_one_time"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:text="@string/location_one_time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
         android:id="@+id/txt_latitude_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/latitude"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        tools:text="@string/latitude" />
+
     <TextView
         android:id="@+id/txt_longitude_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/longitude"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        tools:text="@string/longitude" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/request_activity_updates_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="requestActivityUpdatesButtonHandler"
+            android:text="@string/request_activity_updates" />
+
+        <Button
+            android:id="@+id/remove_activity_updates_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="removeActivityUpdatesButtonHandler"
+            android:text="@string/remove_activity_updates" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detectedActivities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/detected_activities_title" />
 </LinearLayout>
