@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,7 +33,10 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -42,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements
     private TextView mTextLongitude;
     private TextView mTextLatitudeOne;
     private TextView mTextLongitudeOne;
+    private TextView mTextCountry;
+    private TextView mTextState;
+    private TextView mTextCity;
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -68,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements
 
         mStatusText = (TextView) findViewById(R.id.detectedActivities);
         mBroadcastReceiver = new ActivityDetectionBroadcastReceiver();
+
+        mTextCountry = (TextView) findViewById(R.id.txt_country);
+        mTextState = (TextView) findViewById(R.id.txt_state);
+        mTextCity = (TextView) findViewById(R.id.txt_city);
+
         buildGoogleApiClient();
     }
 
@@ -196,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements
                     mGoogleApiClient, mLocationRequest, this);
         }
 
-        // get location one time
+        // get location one time and location information.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if(mLastLocation != null){
             String latitude = getString(R.string.latitude) + "    "+mLastLocation.getLatitude();
@@ -247,6 +260,21 @@ public class MainActivity extends AppCompatActivity implements
 
         mTextLatitude.setText(latitude);
         mTextLongitude.setText(longitude);
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String cityName = getString(R.string.city) + "  " + addresses.get(0).getLocality();
+        String stateName = getString(R.string.state) + "  " + addresses.get(0).getAdminArea();
+        String countryName = getString(R.string.country) + "  " + addresses.get(0).getCountryName();
+
+        mTextCity.setText(cityName);
+        mTextState.setText(stateName);
+        mTextCountry.setText(countryName);
     }
 
     @Override
