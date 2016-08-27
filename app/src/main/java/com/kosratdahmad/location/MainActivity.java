@@ -280,16 +280,17 @@ public class MainActivity extends AppCompatActivity implements
         List<Address> addresses = null;
         try {
             addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            String cityName = getString(R.string.city) + "  " + addresses.get(0).getLocality();
+            String stateName = getString(R.string.state) + "  " + addresses.get(0).getAdminArea();
+            String countryName = getString(R.string.country) + "  " + addresses.get(0).getCountryName();
+
+            mTextCity.setText(cityName);
+            mTextState.setText(stateName);
+            mTextCountry.setText(countryName);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String cityName = getString(R.string.city) + "  " + addresses.get(0).getLocality();
-        String stateName = getString(R.string.state) + "  " + addresses.get(0).getAdminArea();
-        String countryName = getString(R.string.country) + "  " + addresses.get(0).getCountryName();
 
-        mTextCity.setText(cityName);
-        mTextState.setText(stateName);
-        mTextCountry.setText(countryName);
     }
 
     @Override
